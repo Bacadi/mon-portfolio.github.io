@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baptiste Palvadeau — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF7F2;
+    --bg-alt: #EFE7DA;
+    --ink: #1F1B16;
+    --ink-soft: #7A7266;
+    --violet: #6e5838;
+    --violet-soft: #EFE4D3;
+    --mint: #4A453D;
+    --coral: #C9A876;
+    --line: #E4DCCB;
+    --radius: 14px;
+    --mono: 'JetBrains Mono', monospace;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; }
+
+  ::selection { background: var(--violet); color: white; }
+
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 28px; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(10px);
+    background: rgba(250,250,249,0.82);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-family: var(--mono); font-weight: 500; font-size: 15px; letter-spacing: -0.02em; }
+  .logo span { color: var(--violet); }
+  .navlinks { display: flex; gap: 28px; font-size: 14px; font-weight: 500; }
+  .navlinks a { text-decoration: none; color: var(--ink-soft); transition: color .15s; }
+  .navlinks a:hover, .navlinks a:focus-visible { color: var(--ink); }
+
+  /* HERO */
+  .hero { padding: 96px 0 64px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 12px; color: var(--mint);
+    background: #E7FBF5; border: 1px solid #C7F3E5;
+    padding: 5px 12px; border-radius: 100px; margin-bottom: 24px;
+  }
+  .eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--mint); }
+
+  h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    max-width: 780px;
+  }
+  h1 .accent { color: var(--violet); }
+
+  .hero-sub {
+    margin-top: 22px; font-size: 18px; color: var(--ink-soft);
+    max-width: 560px;
+  }
+
+  /* TERMINAL — signature element */
+  .terminal {
+    margin-top: 44px;
+    max-width: 640px;
+    border-radius: var(--radius);
+    background: #16171D;
+    box-shadow: 0 20px 50px -20px rgba(20,21,26,0.35);
+    overflow: hidden;
+    border: 1px solid #23242C;
+  }
+  .terminal-bar {
+    display: flex; align-items: center; gap: 8px;
+    padding: 12px 16px;
+    background: #1D1E26;
+    border-bottom: 1px solid #2A2B34;
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot.red { background: #FF5F57; }
+  .dot.yellow { background: #FEBC2E; }
+  .dot.green { background: #28C840; }
+  .terminal-title {
+    font-family: var(--mono); font-size: 12px; color: #7A7C8A;
+    margin-left: 8px;
+  }
+  .terminal-body { padding: 18px 20px 20px; }
+  .terminal-row { display: flex; align-items: center; gap: 10px; }
+  .prompt-char { color: var(--mint); font-family: var(--mono); font-size: 15px; }
+  #cmdInput {
+    flex: 1; background: transparent; border: none; outline: none;
+    color: #F2F2F7; font-family: var(--mono); font-size: 15px;
+    caret-color: var(--mint);
+  }
+  #cmdInput::placeholder { color: #55576A; }
+  .terminal-hint {
+    margin-top: 10px; font-family: var(--mono); font-size: 12px; color: #55576A;
+  }
+  .terminal-hint kbd {
+    background: #2A2B34; border-radius: 4px; padding: 1px 6px; font-family: var(--mono);
+    color: #9A9CAB; font-size: 11px;
+  }
+  #cmdOutput {
+    margin-top: 14px; font-family: var(--mono); font-size: 13.5px;
+    color: #C7C9D6; line-height: 1.7; display: none;
+    border-top: 1px solid #2A2B34; padding-top: 14px;
+  }
+  #cmdOutput.show { display: block; }
+  #cmdOutput .label { color: var(--mint); }
+
+  .quick-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .quick-tags button {
+    font-family: var(--mono); font-size: 12px; color: var(--ink-soft);
+    background: white; border: 1px solid var(--line); border-radius: 100px;
+    padding: 6px 12px; cursor: pointer; transition: all .15s;
+  }
+  .quick-tags button:hover, .quick-tags button:focus-visible { border-color: var(--violet); color: var(--violet); }
+
+  /* SECTIONS */
+  section { padding: 72px 0; border-top: 1px solid var(--line); }
+  .section-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 40px; }
+  .section-num { font-family: var(--mono); font-size: 13px; color: var(--violet); }
+  h2 {
+    font-family: var(--display); font-size: clamp(1.6rem, 3vw, 2.1rem);
+    letter-spacing: -0.02em; font-weight: 600;
+  }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: start; }
+  .about-grid p { color: var(--ink-soft); font-size: 16px; margin-bottom: 16px; max-width: 520px; }
+  .stat-card {
+    background: var(--bg-alt); border-radius: var(--radius); padding: 20px;
+    margin-bottom: 12px;
+  }
+  .stat-card .num { font-family: var(--display); font-size: 28px; font-weight: 700; color: var(--violet); }
+  .stat-card .label { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 16px; }
+  .skill-card {
+    border: 1px solid var(--line); border-radius: var(--radius); padding: 20px;
+    transition: border-color .15s, transform .15s;
+  }
+  .skill-card:hover { border-color: var(--violet); transform: translateY(-2px); }
+  .skill-card .icon-dot { width: 10px; height: 10px; border-radius: 3px; margin-bottom: 14px; }
+  .skill-card h3 { font-family: var(--display); font-size: 16px; margin-bottom: 6px; }
+  .skill-card p { font-size: 13.5px; color: var(--ink-soft); }
+  .skill-card {
+    overflow: hidden;
+  }
+  .skill-sub {
+    list-style: none;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, opacity 0.3s ease, margin-top 0.35s ease;
+    margin-top: 0;
+  }
+  .skill-card:hover .skill-sub,
+  .skill-card.active .skill-sub {
+    max-height: 200px;
+    opacity: 1;
+    margin-top: 14px;
+  }
+  .skill-sub li {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--violet);
+    padding: 4px 0;
+    border-top: 1px solid var(--line);
+  }
+  .skill-sub li:first-child {
+    border-top: none;
+  }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 20px; }
+  .project-card {
+    border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
+    transition: transform .15s, box-shadow .15s; cursor: pointer;
+  }
+  .project-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px -18px rgba(20,21,26,0.25); }
+  .project-thumb {
+    height: 140px; display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,0.85);
+  }
+  .project-body { padding: 18px 20px 20px; }
+  .project-body h3 { font-family: var(--display); font-size: 17px; margin-bottom: 6px; }
+  .project-body p { font-size: 13.5px; color: var(--ink-soft); margin-bottom: 12px; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-family: var(--mono); font-size: 11px; padding: 3px 8px; border-radius: 100px;
+    background: var(--bg-alt); color: var(--violet);
+  }
+  .project-card.hidden { display: none; }
+
+  /* CONTACT */
+  .contact-box {
+    background: var(--ink); color: white; border-radius: 20px;
+    padding: 48px; display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 24px;
+  }
+  .contact-box h2 { color: white; }
+  .contact-box p { color: #A5A7B5; margin-top: 8px; max-width: 380px; }
+  .btn {
+    font-family: var(--mono); font-size: 14px; text-decoration: none;
+    background: var(--violet); color: white; padding: 12px 22px; border-radius: 100px;
+    display: inline-block; transition: background .15s;
+  }
+  .btn:hover, .btn:focus-visible { background: #5A4BD4; }
+
+  footer { padding: 32px 0; text-align: center; font-family: var(--mono); font-size: 12px; color: var(--ink-soft); }
+
+  @media (max-width: 720px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .navlinks { display: none; }
+    .contact-box { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">baptiste<span>.</span>palvadeau</div>
+    <div class="navlinks">
+      <a href="#about">À propos de moi</a>
+      <a href="#skills">Compétences</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">En recherche de travail - Ouvert à la discution</div>
+    <h1>Je conçois des projets numériques <span class="accent">et j'apprends à coder.</span></h1>
+    <p class="hero-sub">Baptiste Palvadeau — designer & développeur front-end débutant. J'aime construire des produits qui sont aussi agréables à utiliser qu'à regarder.</p>
+
+    <div class="terminal">
+      <div class="terminal-bar">
+        <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+        <div class="terminal-title">assistant — posez votre question</div>
+      </div>
+      <div class="terminal-body">
+        <div class="terminal-row">
+          <span class="prompt-char">›</span>
+          <input id="cmdInput" type="text" placeholder="ex : quels sont tes projets en React ?" autocomplete="off">
+        </div>
+        <div class="terminal-hint">Appuyez sur <kbd>Entrée</kbd> — ou essayez une suggestion ci-dessous</div>
+        <div id="cmdOutput"></div>
+      </div>
+    </div>
+
+    <div class="quick-tags">
+      <button data-q="compétences">Compétences techniques</button>
+      <button data-q="expérience">Expérience</button>
+      <button data-q="contact">Comment te contacter ?</button>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">01</span><h2>À propos de moi</h2></div>
+    <div class="about-grid">
+      <div>
+        <p>Après un bac général maths-physique et un BUT Mesures Physiques complété par le diplôme TECHVIMAT, j'ai explorer plusieurs domaines et découvert le développement. En cherchant une alternance, j'ai découvert le développement front-end et j'ai décidé de m'y intéresser.</p>
+        <p>Ce qui me plaît, c'est de créer des choses utiles aux autres tout en gagnant en autonomie. J'aime m'amuser dans ce que je fais, sans jamais perdre le sérieux et le respect que je mets dans mon travail. Je suis encore débutant, mais déterminé à progresser vite.</p>
+      </div>
+      <div>
+        <div class="stat-card"><div class="num">Rigueur</div><div class="label">BASE SCIENTIFIQUE</div></div>
+        <div class="stat-card"><div class="num">Curiosité</div><div class="label">APPRENTISSAGE CONTINU</div></div>
+        <div class="stat-card"><div class="num">Autonomie</div><div class="label">OBJECTIF PRO</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">02</span><h2>Compétences</h2></div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="icon-dot" style="background:var(--violet)"></div>
+        <h3>HTML / CSS</h3>
+        <p>Bases en cours d'acquisition — structuration et mise en forme de pages web.</p>
+        <ul class="skill-sub">
+          <li>Structure sémantique</li>
+          <li>Mise en page responsive</li>
+          <li>Animations CSS</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="icon-dot" style="background:var(--mint)"></div>
+        <h3>Codage industriel</h3>
+        <p>Excel (VBA), LabVIEW — acquis via le BUT Mesures Physiques.</p>
+        <ul class="skill-sub">
+          <li>LabVIEW — acquisition de données</li>
+          <li>Excel VBA — automatisation</li>
+          <li>Appareils analogiques & numériques</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="icon-dot" style="background:var(--coral)"></div>
+        <h3>Scripting Roblox</h3>
+        <p>Programmation de jeux en Lua — par curiosité et pour le plaisir de créer.</p>
+        <ul class="skill-sub">
+          <li>Scripting Lua</li>
+          <li>Systèmes de commandes admin</li>
+          <li>Game design social</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="icon-dot" style="background:var(--violet)"></div>
+        <h3>Rigueur scientifique</h3>
+        <p>Bac maths-physique, BUT Mesures Physiques — méthode et précision.</p>
+        <ul class="skill-sub">
+          <li>Analyse de données</li>
+          <li>Méthode expérimentale</li>
+          <li>Précision de mesure</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-box">
+      <div>
+        <h2>Discutons de votre projet</h2>
+        <p>Que ce soit pour un site vitrine, une interface d'application ou juste échanger sur un besoin, je réponds sous 48h.</p>
+      </div>
+      <a class="btn" href="mailto:bat.palpro@gmail.com">Envoyer un email</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Baptiste Palvadeau — site portfolio.</footer>
+
+<script>
+  const qa = [
+  { keys: ['projet','projets','portfolio','roblox','labview'], answer: "J'ai 3 projets à montrer : un jeu social sur Roblox avec un système d'administration, un projet d'automatisation d'appareils de mesure (BUT), et ce portfolio lui-même, en cours de construction." , scrollTo: '#projects'},
+  { keys: ['compétence','competences','skill','technique','stack','outils'], answer: "Je suis en train d'apprendre le HTML/CSS/JS, avec des bases en codage industriel (LabVIEW, Excel VBA) et en scripting Lua sur Roblox." , scrollTo: '#skills'},
+  { keys: ['expérience','experience','parcours','années','ans'], answer: "Bac maths-physique, BUT Mesures Physiques + TECHVIMAT, et je me forme aujourd'hui au développement front-end." , scrollTo: '#about'},
+  { keys: ['contact','contacter','email','joindre'], answer: "Le plus simple : un email à bat.palpro@gmail.com — je réponds rapidement." , scrollTo: '#contact'},
+  { keys: ['ia','intelligence artificielle','chatbot','prompt'], answer: "Je commence tout juste à apprendre à utiliser les outils IA — cette barre de recherche est justement l'un de mes premiers essais concrets." , scrollTo: null},
+];
+
+  function respond(query) {
+    const q = query.toLowerCase();
+    const match = qa.find(item => item.keys.some(k => q.includes(k)));
+    const output = document.getElementById('cmdOutput');
+    output.classList.add('show');
+    if (match) {
+      output.innerHTML = '<span class="label">réponse ›</span> ' + match.answer;
+      if (match.scrollTo) {
+        setTimeout(() => {
+          document.querySelector(match.scrollTo).scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 400);
+      }
+      filterProjects(q);
+    } else {
+      output.innerHTML = `<span class="label">réponse ›</span> Je n'ai pas de réponse toute faite pour ça dans cette démo — mais une vraie version connectée pourrait répondre à n'importe quelle question sur ce profil.`;
+    }
+  }
+
+  function filterProjects(q) {
+    document.querySelectorAll('.project-card').forEach(card => {
+      const tags = card.getAttribute('data-tags');
+      const relevant = tags.split(' ').some(t => q.includes(t));
+      card.classList.remove('hidden');
+      if (q.length > 2 && !relevant && !qa.some(item => item.keys.some(k => q.includes(k) && ['contact','compétence','competences','expérience','experience'].includes(k)))) {
+        // keep all visible by default in this simple demo; highlight instead of hiding
+      }
+    });
+  }
+
+  document.getElementById('cmdInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && e.target.value.trim()) {
+      respond(e.target.value.trim());
+    }
+  });
+
+  document.querySelectorAll('.quick-tags button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.getElementById('cmdInput').value = btn.dataset.q;
+      respond(btn.dataset.q);
+    });
+  });
+
+document.querySelectorAll('.skill-card').forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('active');
+    });
+  });
+
+</script>
+
+</body>
+</html>
