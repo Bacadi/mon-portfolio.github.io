@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compétences professionnelles — Baptiste Palvadeau</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF7F2;
+    --bg-alt: #EFE7DA;
+    --ink: #1F1B16;
+    --ink-soft: #7A7266;
+    --violet: #8B6F47;
+    --violet-soft: #EFE4D3;
+    --mint: #4A453D;
+    --coral: #C9A876;
+    --line: #E4DCCB;
+    --radius: 14px;
+    --mono: 'JetBrains Mono', monospace;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    line-height: 1.5;
+  }
+
+  a { color: inherit; }
+  ::selection { background: var(--violet); color: white; }
+
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 28px; }
+
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(10px);
+    background: rgba(250,247,242,0.85);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-family: var(--mono); font-weight: 500; font-size: 15px; }
+  .logo span { color: var(--violet); }
+  .back-link {
+    font-family: var(--mono); font-size: 13px; text-decoration: none;
+    color: var(--ink-soft); display: flex; align-items: center; gap: 6px;
+    transition: color .15s;
+  }
+  .back-link:hover { color: var(--violet); }
+
+  .page-hero { padding: 64px 0 40px; border-bottom: 1px solid var(--line); }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 12px; color: var(--mint);
+    background: var(--violet-soft); border: 1px solid var(--line);
+    padding: 5px 12px; border-radius: 100px; margin-bottom: 20px;
+  }
+  h1 {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    letter-spacing: -0.03em; max-width: 700px;
+  }
+  .page-hero p {
+    margin-top: 18px; font-size: 17px; color: var(--ink-soft); max-width: 600px;
+  }
+
+  .domains { padding: 56px 0; }
+  .domain-card {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 32px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .domain-card:last-child { border-bottom: none; }
+
+  .domain-visual {
+    border-radius: var(--radius);
+    height: 160px;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    font-family: var(--mono); font-size: 12px; color: var(--bg);
+    padding: 12px;
+  }
+  .domain-visual img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius); }
+
+  .domain-num { font-family: var(--mono); font-size: 13px; color: var(--violet); margin-bottom: 8px; display: block; }
+  .domain-card h2 { font-family: var(--display); font-size: 22px; margin-bottom: 10px; letter-spacing: -0.01em; }
+  .domain-card > div:last-child p.domain-desc { color: var(--ink-soft); font-size: 15px; margin-bottom: 16px; max-width: 520px; }
+
+  .skill-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-list span {
+    font-family: var(--mono); font-size: 12.5px; color: var(--ink);
+    background: var(--bg-alt); border: 1px solid var(--line);
+    padding: 5px 12px; border-radius: 100px;
+  }
+
+  @media (max-width: 720px) {
+    .domain-card { grid-template-columns: 1fr; }
+    .domain-visual { height: 120px; }
+  }
+
+  footer { padding: 32px 0; text-align: center; font-family: var(--mono); font-size: 12px; color: var(--ink-soft); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">baptiste<span>.</span>palvadeau</div>
+    <a class="back-link" href="index.html">← retour au portfolio</a>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">Compétences professionnelles</div>
+    <h1>Des compétences techniques appliquées au terrain industriel</h1>
+    <p>Acquises en travaux pratiques durant mon BUT Mesures Physiques, organisées par domaine professionnel plutôt que par outil — pour montrer directement où elles peuvent servir en entreprise.</p>
+  </div>
+</header>
+
+<section class="domains">
+  <div class="wrap">
+
+    <div class="domain-card">
+      <div class="domain-visual" style="background:linear-gradient(135deg,#8B6F47,#C9A876)">
+        AJOUTE UNE PHOTO<br>(ex: manip.jpg)
+      </div>
+      <div>
+        <span class="domain-num">01</span>
+        <h2>Instrumentation & métrologie</h2>
+        <p class="domain-desc">Utilisation et étalonnage d'appareils de mesure analogiques et numériques, avec une exigence de précision propre au milieu industriel et de laboratoire.</p>
+        <div class="skill-list">
+          <span>Étalonnage</span>
+          <span>Appareils analogiques</span>
+          <span>Appareils numériques</span>
+          <span>Précision de mesure</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="domain-card">
+      <div class="domain-visual" style="background:linear-gradient(135deg,#4A453D,#7A7266)">
+        AJOUTE UNE PHOTO<br>(ex: labview.jpg)
+      </div>
+      <div>
+        <span class="domain-num">02</span>
+        <h2>Automatisation & contrôle-commande</h2>
+        <p class="domain-desc">Pilotage automatisé d'appareils via LabVIEW, pour des tâches d'acquisition de données répétitives ou de contrôle en temps réel.</p>
+        <div class="skill-list">
+          <span>LabVIEW</span>
+          <span>Acquisition de données</span>
+          <span>Pilotage d'appareils</span>
+          <span>Automatisation de process</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="domain-card">
+      <div class="domain-visual" style="background:linear-gradient(135deg,#C9A876,#EFE4D3); color:var(--ink);">
+        AJOUTE UNE PHOTO<br>(ex: excel.jpg)
+      </div>
+      <div>
+        <span class="domain-num">03</span>
+        <h2>Traitement de données</h2>
+        <p class="domain-desc">Automatisation et analyse de résultats de mesure sous Excel, pour transformer des données brutes en résultats exploitables.</p>
+        <div class="skill-list">
+          <span>Excel VBA</span>
+          <span>Automatisation de calculs</span>
+          <span>Analyse de résultats</span>
+          <span>Mise en forme de rapports</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="domain-card">
+      <div class="domain-visual">
+        <img src="https://github.com/Bacadi/mon-portfolio.github.io/blob/main/images/projetS.jpg" alt="photo d'un projet">
+      </div>
+      <div>
+        <span class="domain-num">04</span>
+        <h2>Méthode scientifique</h2>
+        <p class="domain-desc">Rigueur expérimentale acquise en travaux pratiques : protocoles de mesure, reproductibilité, rédaction de comptes-rendus techniques.</p>
+        <div class="skill-list">
+          <span>Protocoles expérimentaux</span>
+          <span>Reproductibilité</span>
+          <span>Comptes-rendus techniques</span>
+          <span>Rigueur analytique</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>© 2026 Baptiste Palvadeau — compétences issues du BUT Mesures Physiques.</footer>
+
+</body>
+</html>
