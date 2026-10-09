@@ -54,9 +54,12 @@
   .back-link {
     font-family: var(--mono); font-size: 13px; text-decoration: none;
     color: var(--ink-soft); display: flex; align-items: center; gap: 6px;
-    transition: color .15s;
+    transition: all 0.5s ease;
   }
-  .back-link:hover { color: var(--violet); }
+  .back-link:hover {
+    color: var(--ink);
+    transform: scale(1.05);
+ }
 
   .page-hero { padding: 64px 0 40px; border-bottom: 1px solid var(--line); }
   .eyebrow {
