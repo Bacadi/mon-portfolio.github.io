@@ -15,17 +15,30 @@
 <body>
 
   <nav>
-    <div class="wrap">
-      <div class="logo">baptiste<span>.</span>palvadeau</div>
+    <div class="wrap ">
+      <div class="logo">baptiste<span>.</span>palvadeau
+        <svg id="moon" class="darkBtn" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+        <svg id="sun" class="darkBtn" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" />
+          <path
+            d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+        </svg>
+      </div>
+
       <div class="navlinks">
         <a href="#about">À propos</a>
+        <a href="hardskills.html">Compétences Industrielles</a>
         <a href="#contact">Contact</a>
       </div>
     </div>
   </nav>
 
   <header class="hero">
-    <div class="wrap">
+    <div class="wrap reveal">
       <div class="eyebrow">Disponible pour toutes demande de contact.</div>
       <h1>Bienvenue sur mon <span class="accent">Portfolio</span></h1>
       <p class="hero-sub">Ce portfolio contient beaucoup de choses ! Je vous invite donc à vous déplacer selon vos
@@ -34,7 +47,7 @@
   </header>
 
   <section id="search">
-    <div class="wrap">
+    <div class="wrap reveal">
       <div class="section-head">
         <span class="section-num">00</span>
         <h2>Rechercher dans le Portfolio</h2>
@@ -44,7 +57,8 @@
 
         <div class="shcard">
           <h3>Si vous êtes recruteur industriel</h3>
-          <p>Je vous invite à vous référer à la section <a href="hardskills.html">Compétences Pro</a> en haut de page.
+          <p>Je vous invite à vous référer à la page <a href="hardskills.html">Compétences Industrielles</a> en haut de
+            page.
           </p>
         </div>
 
@@ -59,7 +73,7 @@
   </section>
 
   <section id="about">
-    <div class="wrap">
+    <div class="wrap reveal">
       <div class="section-head">
         <span class="section-num">01</span>
         <h2>À propos de Moi</h2>
@@ -77,12 +91,14 @@
         <ul>
           <li>
             <p>Suite à un Baccalauréat général avec les options <em>Mathématiques</em>, <em>Physique-Chimie</em> et
-              <em>Sciences de l'ingénieur</em> obtenu en <b>2022</b>.</p>
+              <em>Sciences de l'ingénieur</em> obtenu en <b>2022</b>.
+            </p>
           </li>
           <li>
             <p>J'ai obtenu un <abbr title="Bachelor Universitaire de Technologie">BUT</abbr> de <em>Mesures
                 Physiques</em> à l'<abbr title="Institut Universitaire de Technologie">IUT</abbr> de Saint-Etienne en
-              <b>2025</b></p>
+              <b>2025</b>
+            </p>
           </li>
         </ul>
 
@@ -92,24 +108,24 @@
   </section>
 
   <section>
-    <div class="wrap">
-      <div class="section-head reveal">
+    <div class="wrap reveal">
+      <div class="section-head">
         <span class="section-num">02</span>
         <h2>Mes atouts</h2>
       </div>
       <div class="cards-grid">
-        <div class="card reveal">
+        <div class="card">
           <h3>Curieux</h3>
           <p>On dit souvent que ...</p>
           <p><i>La curiosité est un vilain défault.</i>.</p>
           <p>Néanmoins, je suis curieux d'apprendre de nouvelles choses.</p>
         </div>
-        <div class="card reveal">
+        <div class="card">
           <h3>Sérieux</h3>
           <p>Je suis appliqué dans mes activitées et mon travail.</p>
           <p>Je trouve que le sérieux va de paire avec le respect.</p>
         </div>
-        <div class="card reveal">
+        <div class="card">
           <h3>Calme</h3>
           <p>Je ne suis pas une personnalité nomade qui cherche la nouveauté.</p>
           <p>Je suis plus quelqu'un de reposé et réfléchis.</p>
@@ -119,17 +135,23 @@
   </section>
 
   <section id="contact">
-    <div class="wrap">
+    <div class="wrap reveal">
       <div class="section-head">
         <span class="section-num">03</span>
         <h2>Mon contact</h2>
       </div>
-      <address class="cont">
-        <h3>Contactez moi via mon adresse Email :</h3> <a href="mailto:bat.pal@gmail.com">bat.pal@gmail.com</a>
-      </address>
+      <div class="contact-div">
+        <address class="cont">
+          <h3>Contactez moi via mon adresse Email :</h3> <a href="mailto:bat.pal@gmail.com">bat.palpro@gmail.com</a>
+        </address>
+      </div>
+
     </div>
   </section>
 
+  <footer>
+    <p>@ Baptiste palvadeau - 2026</p>
+  </footer>
 
 
   <script src="script.js"></script>

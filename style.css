@@ -13,10 +13,23 @@
   --display: 'Space Grotesk', sans-serif;
   --body: 'Inter', sans-serif;
 }
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+html[data-theme="dark"] {
+  --bg: #1F1B16;
+  --bg-alt: #7A7266;
+  --ink: #FAF7F2;
+  --ink-soft: #EFE7DA ;
+  --accent: #EFE4D3;
+  --accent-soft: #6e5838;
+  --varcol1: #C9A876;
+  --varcol2: #4A453D;
+  --line: #E4DCCB;
 }
 
 body {
@@ -34,7 +47,7 @@ body {
 nav {
   position: sticky;
   top: 0;
-  background: rgba(250, 247, 242, 0.85);
+  background-color: var(--bg);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
   z-index: 99;
@@ -53,6 +66,31 @@ nav .wrap {
   font-size: 15px;
 }
 
+.darkBtn {
+  transform: translateY(25%);
+  color: var(--ink);
+  fill: currentColor;
+  fill-opacity: 0;
+  cursor: pointer;
+  transition: fill-opacity 0.3s ease, opacity 0.3s ease;
+}
+
+.darkBtn:hover {
+  fill-opacity: 1;
+}
+
+.darkBtn:active {
+  opacity: 0;
+}
+
+
+#sun { display: none; }
+
+html[data-theme="dark"] #moon { display: none; }
+html[data-theme="dark"] #sun { display: inline; }
+
+
+
 .logo span {
   color: var(--accent);
 }
@@ -67,6 +105,13 @@ nav .wrap {
   color: var(--ink-soft);
   font-size: 14px;
   font-weight: 500;
+  transition: all 0.3s;
+}
+
+.navlinks a:hover {
+  color: var(--ink);
+  transform: scale(1.05);
+  text-shadow: 0 0 20px var(--ink);
 }
 
 .hero {
@@ -79,8 +124,8 @@ nav .wrap {
   gap: 8px;
   font-family: var(--mono);
   font-size: 12px;
-  color: var(--varcol1);
-  background: var(--accent-soft);
+  color: #4A453D;
+  background: #EFE4D3;
   border: 1px solid var(--line);
   padding: 5px 12px;
   border-radius: 100px;
@@ -97,7 +142,7 @@ h1 {
 }
 
 h1 .accent {
-  color: var(--accent);
+  color: #6e5838;
 }
 
 .hero-sub {
@@ -142,12 +187,13 @@ h2 {
   border: 5px solid var(--line);
   border-radius: var(--radius);
   padding: 45px;
-  transition: transform 0.5s, border-color 0.5s;
+  transition: all 0.5s ease;
 }
 
 .shcard:hover {
   transform: translateY(-10px);
   border-color: var(--varcol2);
+  box-shadow: 0 0 20px var(--varcol2);
 }
 
 .shcard h3 {
@@ -169,8 +215,12 @@ h2 {
 .shcard a {
   display: inline;
   text-decoration: none;
-  color: var(--varcol1);
+  color: var(--ink);
+  transition: all 0.3s;
+}
 
+.shcard a:hover {
+  text-shadow: 0 0 20px var(--ink);
 }
 
 .para {
@@ -196,12 +246,13 @@ h2 {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 20px;
-  transition: transform 0.17s, border-color 0.17s;
+  transition: all 0.3s ease;
 }
 
 .card:hover {
   transform: translateY(-5px);
   border-color: var(--accent);
+  box-shadow: 0 0 20px var(--accent)
 }
 
 .card h3 {
@@ -218,8 +269,8 @@ h2 {
 
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateX(30px);
+  transition: all 0.6s ease-in-out;
 }
 
 .reveal.visible {
@@ -227,13 +278,25 @@ h2 {
   transform: translateY(0);
 }
 
-.card.reveal.visible:hover {
+.card:hover {
   transform: translateY(-10px);
   border-color: var(--accent);
 }
 
+.contact-div {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  background-color: #1F1B16;
+  padding: 40px;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius); 
+}
+
+
+
 .cont {
-  color: var(--ink-soft);
+  color: #FAF7F2;
 }
 
 .cont h3 {
@@ -242,20 +305,51 @@ h2 {
 
 .cont a {
   text-decoration: none;
-  color: var(--accent);
-  margin: 2px;
+  color: var(--bg-alt);
+  margin-left: 20px;
   padding: 5px;
   border: 2px solid transparent;
   border-radius: 10px;
+  transition: all 0.3s ease;
 }
 
 .cont a:hover {
-  color: var(--ink);
+  color: var(--accent);
   border: 2px solid var(--accent);
+  text-shadow: 0 0 4px var(--accent);
+  font-size: 1.1rem;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+  color: var(--ink-soft);
 }
 
 
+.theme-transition,
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease,
+    border-color 0.4s ease,
+    fill 0.4s ease,
+    stroke 0.4s ease,
+    box-shadow 0.4s ease !important;
+}
 
+/* Respecte les utilisateurs qui réduisent les animations */
+@media (prefers-reduced-motion: reduce) {
+  .theme-transition,
+  .theme-transition *,
+  .theme-transition *::before,
+  .theme-transition *::after {
+    transition: none !important;
+  }
+}
 
 @media (max-width: 680px) {
 
@@ -270,7 +364,4 @@ h2 {
   .cards-grid {
     grid-template-columns: 1fr;
   }
-
-
-
 }
